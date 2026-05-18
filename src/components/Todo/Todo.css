@@ -3,10 +3,10 @@
   max-width: 85vw;
   max-height: 50vh;
   overflow-y: auto;
-  background-color: rgba(30, 27, 75, 0.25);
+  background-color: var(--color-glass-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(248, 250, 252, 0.1);
+  border: 1px solid var(--color-glass-border);
   border-radius: 12px;
   padding: 1.25rem;
   right: 2rem;
@@ -17,8 +17,8 @@
 .todo-input {
   background-color: transparent;
   border: none;
-  color: var(--text-color-primary);
-  border-bottom: 2px solid rgba(248, 250, 252, 0.3);
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-input-border);
   margin-bottom: 1rem;
   font-size: 1.1rem;
   width: 100%;
@@ -27,7 +27,7 @@
 
 .todo-input:focus {
   outline: none;
-  border-bottom-color: var(--text-color-primary);
+  border-bottom-color: var(--color-text);
 }
 
 .todo-items {
@@ -63,9 +63,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--color-text-hint);
 }
 
 .todo-clear-btn:hover {
-  color: var(--text-color-primary);
+  color: var(--color-text);
 }

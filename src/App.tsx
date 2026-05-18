@@ -2,6 +2,7 @@ import "./App.css";
 import { getRandomImage } from "./data/images";
 import { Home, Task } from "./pages";
 import { useBrowser } from "./context/browser-context";
+import { ThemeToggle } from "./components/ThemeToggle/ThemeToggle";
 import { useEffect, useState, useCallback } from "react";
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         alt=""
         aria-hidden="true"
       />
+      <ThemeToggle />
       {name ? <Task /> : <Home />}
     </div>
   );
