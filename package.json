@@ -1,6 +1,6 @@
 {
   "name": "daily-focus",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "dependencies": {
@@ -9,14 +9,34 @@
   },
   "scripts": {
     "dev": "vite",
-    "start": "vite",
     "build": "vite build",
-    "build:extension": "vite build",
     "package:extension": "vite build && cd build && zip -r ../daily-focus-extension.zip . && cd ..",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --check 'src/**/*.{js,jsx,css}'",
+    "format:fix": "prettier --write 'src/**/*.{js,jsx,css}'",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.2",
-    "vite": "^8.0.13"
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.8.3",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.13",
+    "vitest": "^4.1.6"
   }
 }

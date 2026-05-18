@@ -1,75 +1,73 @@
 .home-container {
-    color: var(--text-color-primary);
-    padding-top: 2.5rem;
-}
-
-.gap-lg {
-    gap: 9rem;
+  color: var(--text-color-primary);
+  padding-top: 2.5rem;
 }
 
 .main-heading {
-    font-size: 2.5rem;
-    line-height: 3rem;
+  font-size: 2.5rem;
+  line-height: 3rem;
 }
 
 .input {
-    background-color: transparent;
-    border: none;
-    border-bottom: 3px solid var(--text-color-primary);
-    font-size: 2rem;
-    color: var(--text-color-primary);
-    width: 80vw;
-    max-width: 450px;
-    text-align: center;
-    transition: border-color 0.3s ease, transform 0.2s ease;
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid var(--text-color-primary);
+  font-size: 2rem;
+  color: var(--text-color-primary);
+  width: 80vw;
+  max-width: 450px;
+  text-align: center;
+  transition:
+    border-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .input::placeholder {
-    color: rgba(248, 250, 252, 0.5);
-    font-size: 1.5rem;
+  color: rgba(248, 250, 252, 0.5);
+  font-size: 1.5rem;
 }
 
 .hint {
-    color: rgba(248, 250, 252, 0.7);
-    font-size: 0.875rem;
-    margin-top: 0.5rem;
-    font-weight: 400;
-    letter-spacing: 0.5px;
+  color: rgba(248, 250, 252, 0.7);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 }
 
 @media screen and (min-width: 768px) {
-    .main-heading {
-        font-size: 3.5rem;
-        line-height: 4rem;
-    }
+  .main-heading {
+    font-size: 3.5rem;
+    line-height: 4rem;
+  }
 
-    .input {
-        font-size: 3rem;
-        width: 45vw;
-        max-width: none;
-    }
+  .input {
+    font-size: 3rem;
+    width: 45vw;
+    max-width: none;
+  }
 
-    .input::placeholder {
-        font-size: 2rem;
-    }
+  .input::placeholder {
+    font-size: 2rem;
+  }
 
-    .hint {
-        font-size: 1rem;
-    }
+  .hint {
+    font-size: 1rem;
+  }
 }
 
 .input:focus {
-    outline: none;
-    border-bottom-color: #64B5F6;
-    transform: scale(1.02);
+  outline: none;
+  border-bottom-color: #64b5f6;
+  transform: scale(1.02);
 }
 
 .footer {
-    position: fixed;
-    bottom: 1rem;
-    color: var(--text-color-primary);
-    font-size: 0.875rem;
-    opacity: 0.8;
-    font-weight: 400;
-    letter-spacing: 0.5px;
+  position: fixed;
+  bottom: 1rem;
+  color: var(--text-color-primary);
+  font-size: 0.875rem;
+  opacity: 0.8;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 }
