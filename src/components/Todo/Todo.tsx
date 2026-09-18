@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import "./Todo.css";
 
 interface TodoItem {
@@ -23,7 +23,7 @@ export const Todo = () => {
   const [todo, setTodo] = useState("");
   const [todoList, setTodoList] = useState<TodoItem[]>(loadTodos);
 
-  const handleTodoInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTodoInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTodo(event.target.value);
   };
 
@@ -43,9 +43,7 @@ export const Todo = () => {
 
   const handleTodoCheckChange = (todoId: string) => {
     const updatedTodoList = todoList.map((item) =>
-      todoId === item.id
-        ? { ...item, isCompleted: !item.isCompleted }
-        : item,
+      todoId === item.id ? { ...item, isCompleted: !item.isCompleted } : item,
     );
     setTodoList(updatedTodoList);
     localStorage.setItem("todo", JSON.stringify(updatedTodoList));
@@ -76,7 +74,11 @@ export const Todo = () => {
         {todoList &&
           todoList.map(({ todo, id, isCompleted }) => {
             return (
-              <div key={id} className="todo-items d-flex align-center" role="listitem">
+              <div
+                key={id}
+                className="todo-items d-flex align-center"
+                role="listitem"
+              >
                 <label
                   className={`${isCompleted ? "strike-through" : ""} todo-label`}
                 >

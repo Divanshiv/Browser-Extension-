@@ -3,20 +3,16 @@ import globals from "globals";
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import reactRefreshPlugin from "eslint-plugin-react-refresh";
+import tseslint from "typescript-eslint";
 
-export default [
+export default tseslint.config(
   {
-    ignores: [
-      "build/",
-      "node_modules/",
-      "daily-focus-extension.zip",
-      "**/*.test.js",
-      "**/*.test.jsx",
-    ],
+    ignores: ["build/", "node_modules/", "daily-focus-extension.zip"],
   },
   js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    files: ["src/**/*.{js,jsx}"],
+    files: ["src/**/*.{js,jsx,ts,tsx}"],
     plugins: {
       react: reactPlugin,
       "react-hooks": reactHooksPlugin,
@@ -28,6 +24,7 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.es2021,
+        ...globals.vitest,
       },
       parserOptions: {
         ecmaFeatures: { jsx: true },
@@ -46,8 +43,11 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
-      "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_" },
+      ],
       "no-console": "warn",
     },
   },
-];
+);

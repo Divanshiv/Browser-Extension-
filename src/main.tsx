@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserProvider } from "./context/browser-context";
+import { SettingsProvider } from "./context/settings-context";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 
 const rootElement = document.getElementById("root");
@@ -13,9 +14,11 @@ const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <ErrorBoundary>
-      <BrowserProvider>
-        <App />
-      </BrowserProvider>
+      <SettingsProvider>
+        <BrowserProvider>
+          <App />
+        </BrowserProvider>
+      </SettingsProvider>
     </ErrorBoundary>
   </React.StrictMode>,
 );

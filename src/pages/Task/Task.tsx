@@ -1,7 +1,13 @@
 import "./Task.css";
 import { useBrowser } from "../../context/browser-context";
 import { getGreeting } from "../../context/browser-reducer";
-import { Fragment, useEffect, useState, type FormEvent } from "react";
+import {
+  Fragment,
+  useEffect,
+  useState,
+  type ChangeEvent,
+  type FormEvent,
+} from "react";
 import { quotes } from "../../data/quotes";
 import { Todo } from "../../components/Todo/Todo";
 import { Scratchpad } from "../../components/Scratchpad/Scratchpad";
@@ -47,6 +53,7 @@ export const Task = () => {
   }, [browserDispatch]);
 
   useEffect(() => {
+    let lastDisplay = "";
     const getCurrentTime = () => {
       const today = new Date();
       const hours = today.getHours();
@@ -56,6 +63,8 @@ export const Task = () => {
       const minute = minutes < 10 ? `0${minutes}` : minutes;
 
       const currentTime = `${hour}:${minute}`;
+      if (currentTime === lastDisplay) return;
+      lastDisplay = currentTime;
 
       browserDispatch({
         type: "TIME",
@@ -86,9 +95,7 @@ export const Task = () => {
     }
   };
 
-  const handleCompleteTaskChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleCompleteTaskChange = (event: ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
     localStorage.setItem("checkedStatus", String(event.target.checked));
   };

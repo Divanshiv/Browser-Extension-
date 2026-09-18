@@ -50,7 +50,9 @@ export const Home = () => {
           </small>
         </form>
       </div>
-      <footer className="footer fade-in-up delay-2">Made by Divanshiv ❤️</footer>
+      <footer className="footer fade-in-up delay-2">
+        Made by Divanshiv ❤️
+      </footer>
     </div>
   );
 };

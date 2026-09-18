@@ -9,14 +9,8 @@ import {
   browserReducer,
   type BrowserAction,
   type BrowserState,
+  initialBrowserState,
 } from "./browser-reducer";
-
-const initialValue: BrowserState = {
-  name: "",
-  time: "",
-  message: "",
-  task: null,
-};
 
 interface BrowserContextValue extends BrowserState {
   browserDispatch: Dispatch<BrowserAction>;
@@ -31,15 +25,24 @@ interface BrowserProviderProps {
 }
 
 const BrowserProvider = ({ children }: BrowserProviderProps) => {
-  const [{ name, time, message, task }, browserDispatch] = useReducer(
+  const [state, browserDispatch] = useReducer(
     browserReducer,
-    initialValue,
+    initialBrowserState,
+    () => {
+      try {
+        const storedName = localStorage.getItem("name");
+        if (storedName) {
+          return { ...initialBrowserState, name: storedName };
+        }
+      } catch {
+        // ignore
+      }
+      return initialBrowserState;
+    },
   );
 
   return (
-    <BrowserContext.Provider
-      value={{ name, time, message, task, browserDispatch }}
-    >
+    <BrowserContext.Provider value={{ ...state, browserDispatch }}>
       {children}
     </BrowserContext.Provider>
   );

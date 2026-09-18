@@ -1,4 +1,11 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  type ChangeEvent,
+  type KeyboardEvent,
+} from "react";
 import "./Scratchpad.css";
 
 const STORAGE_KEY = "scratchpad";
@@ -15,22 +22,17 @@ export const Scratchpad = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState(loadScratchpad);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const saveTimerRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
 
-  // Auto-save every 2 seconds
+  // Auto-save with debounce
   useEffect(() => {
-    saveTimerRef.current = setInterval(() => {
+    const timer = setTimeout(() => {
       try {
         localStorage.setItem(STORAGE_KEY, content);
       } catch {
         // Storage full or unavailable — silently ignore
       }
-    }, 2000);
-    return () => {
-      if (saveTimerRef.current !== undefined) {
-        clearInterval(saveTimerRef.current);
-      }
-    };
+    }, 500);
+    return () => clearTimeout(timer);
   }, [content]);
 
   // Focus textarea when panel opens
@@ -40,16 +42,13 @@ export const Scratchpad = () => {
     }
   }, [isOpen]);
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      const value = e.target.value;
-      setContent(value);
-    },
-    [],
-  );
+  const handleChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    setContent(value);
+  }, []);
 
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    (e: KeyboardEvent<HTMLTextAreaElement>) => {
       // Auto-bullet: if user presses Enter after a line starting with "- " or "* "
       if (e.key === "Enter") {
         const textarea = e.currentTarget;

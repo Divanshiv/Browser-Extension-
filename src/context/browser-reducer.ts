@@ -37,3 +37,10 @@ export const browserReducer = (
       return state;
   }
 };
+
+export const initialBrowserState: BrowserState = {
+  name: "",
+  time: "",
+  message: "",
+  task: null,
+};
